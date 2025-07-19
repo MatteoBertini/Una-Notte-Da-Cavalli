@@ -1,0 +1,11 @@
+.next-event-wrapper {
+    display: flex;                  /* Use flexbox layout */
+    justify-content: center;        /* Center horizontally */
+    align-items: center;            /* Center vertically */
+    flex-direction: column;         /* Stack children vertically */
+    min-height: 100vh;              /* Make container full viewport height */
+    padding: 2rem;                  /* Add padding inside container */
+    color: white;                 /* Set text color to white */
+    background-color: black;      /* Black background */
+    text-align: center;             /* Center text horizontally */
+}

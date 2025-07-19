@@ -1,0 +1,41 @@
+/* Base scroll section style */
+.scroll-section {
+    width: 100%;
+}
+
+/* Layout flex container for text and canvas side-by-side */
+.scroll-layout {
+    display: flex;                      /* Arrange children horizontally */
+    justify-content: space-between;     /* Space between text and canvas */
+    align-items: stretch;               /* Stretch children vertically */
+    width: 100%;
+    padding: 4rem 2rem;                 /* Top/bottom and left/right padding */
+    padding-right: 0;                   /* Override right padding to 0 */
+    box-sizing: border-box;             /* Include padding in width calculations */
+}
+
+/* Canvas wrapper styling */
+.secondary-canvas-wrapper {
+    top: 0;                             /* Position relative to container */
+    left: 0;
+    flex: 1 1 100%;                     /* Flexible width */
+    width: 35vw;                        /* 35% viewport width */
+    height: 70vh;                       /* 70% viewport height */
+    min-width: 35vw;                    /* Prevent shrinking below 35vw */
+}
+
+/* Responsive styling for portrait/mobile orientation */
+@media (orientation: portrait) {
+    .scroll-layout {
+        flex-direction: column;         /* Stack children vertically on small screens */
+        padding: 2rem 1rem;
+    }
+
+    .secondary-canvas-wrapper {
+        width: 100%;                    /* Full width canvas on mobile */
+        min-width: auto;                /* Remove minimum width */
+        height: 50vh;                   /* Reduce height on smaller devices */
+        margin-top: 1rem;               /* Space above canvas */
+        flex: none;                     /* Disable flex grow/shrink */
+    }
+}

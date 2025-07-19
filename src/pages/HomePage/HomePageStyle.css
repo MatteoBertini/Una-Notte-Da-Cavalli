@@ -1,0 +1,15 @@
+/* Body styles*/
+body {
+    margin: 0;                              /* Remove default margin */
+    background: black;                    /* Black background */
+    font-family: 'Segoe UI', sans-serif;    /* Set font */
+    color: white;                         /* White text */
+    overflow-x: hidden;                     /* Disable horizontal scroll */
+}
+
+/* Wrapper for entire page content */
+.page-wrapper {
+    position: relative;                     /* Relative positioning for internal absolute elements */
+    background: #0a0a0a;                  /* Slightly lighter black background */
+    overflow: hidden;                       /* Hide overflow for effects */
+}

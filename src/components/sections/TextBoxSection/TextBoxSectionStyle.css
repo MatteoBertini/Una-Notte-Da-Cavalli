@@ -1,0 +1,17 @@
+/* Container for row layout of text boxes */
+.text-box-row {
+    display: flex;              /* Use Flexbox for layout */
+    flex-direction: row;        /* Arrange children horizontally */
+    flex: 1 1 150%;             /* Grow and shrink, base size 150% of container */
+    justify-content: space-around; /* Distribute boxes evenly */
+    width: 100%;                /* Full container width */
+}
+
+/* Responsive styles for portrait (mobile) screens */
+@media (orientation: portrait) {
+    .text-box-row {
+        flex-direction: column; /* Stack items vertically on small screens */
+        align-items: center;    /* Center-align text boxes horizontally */
+        gap: 2rem;              /* Add space between stacked boxes */
+    }
+}

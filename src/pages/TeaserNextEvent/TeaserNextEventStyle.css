@@ -1,0 +1,38 @@
+.teaser-mode {
+    padding: 2rem;              /* Space inside container around content */
+    text-align: center;         /* Center-align all text within this div */
+}
+
+.teaser-banner-raw {
+    width: 25vw;                /* Set image width to 25% of viewport width */
+    height: auto;               /* Height scales automatically to preserve aspect ratio */
+}
+
+/* Responsive adjustment for portrait mode screens */
+@media screen and (orientation: portrait) {
+    .teaser-banner-raw {
+        width: 60vw;            /* Increase image width to 60% of viewport width in portrait */
+        height: auto;           /* Keep aspect ratio consistent */
+    }
+}
+
+.teaser-mode h1 {
+    font-size: 2.5rem;          /* Large font size for main heading */
+    margin: 1rem;               /* Equal margin on all sides */
+    text-transform: uppercase;  /* Uppercase letters for emphasis */
+    letter-spacing: 1px;        /* Slight spacing between letters */
+}
+
+.countdown-raw {
+    font-size: 2rem;            /* Large text for countdown numbers */
+    color: #f00;              /* Bright red color */
+    display: flex;              /* Use flexbox for layout of countdown parts */
+    justify-content: center;    /* Center the countdown horizontally */
+    gap: 1.2rem;                /* Space between each countdown time part */
+    margin: 1rem 0;             /* Vertical margin above and below */
+}
+
+.teaser-text {
+    font-size: 1rem;            /* Normal body text size */
+    opacity: 1;                 /* Fully opaque */
+}

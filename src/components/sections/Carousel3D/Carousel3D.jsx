@@ -30,7 +30,7 @@ const Carousel3D = React.memo(React.forwardRef((_, ref) => {
     const scaleFactor = isMobile ? clamp(width / 450, 0.7, 0.975) : 0.975;
     const spacingFactor = isMobile ? 0.9 : 1.7;
     const dragSensitivity = isMobile ? 0.007 : 0.005;
-    const canvasHeight = isMobile ? '80vh' : '90vh'; // Height based on device
+    const canvasHeight = isMobile ? '80svh' : '90svh'; // Height based on device
 
     const current = useRef(2); // Start at center index
 

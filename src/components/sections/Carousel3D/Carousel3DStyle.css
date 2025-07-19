@@ -1,7 +1,7 @@
 /* Container for the entire 3D carousel */
 .carousel-container {
     width: 100vw;                               /* Full width */
-    height: var(--carousel-height, 90vh);       /* Height dynamically set via CSS variable, fallback = 90vh */
+    height: var(--carousel-height, 90svh);       /* Height dynamically set via CSS variable, fallback = 90vh */
     margin: 0 auto;                             /* Center horizontally */
     touch-action: pan-y;                        /* Allow vertical scrolling, disable horizontal drag interference */
     user-select: none;                          /* Prevent accidental text/image selection */

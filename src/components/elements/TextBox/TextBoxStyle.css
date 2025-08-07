@@ -1,0 +1,92 @@
+/* Main container for the text box */
+.text-box {
+    background: #111;                                 /* Very dark background for contrast */
+    padding: 2rem;                                      /* Spacing inside the box (all sides) */
+    border-radius: 15px;                                /* Rounded corners for a softer look */
+    margin: 2rem;                                       /* Space around the box to separate from others */
+    color: white;                                     /* White text color for visibility */
+    flex: 1 1 100%;                                     /* Allow it to grow and shrink in flex layout, initial size 100% */
+    min-height: 460px;                                  /* Ensures enough vertical space for content */
+    width: 100%;                                        /* Take full horizontal space of parent container */
+    box-sizing: border-box;                             /* Include padding in total width/height */
+    position: relative;                                 /* Enable absolutely-positioned children like ::before */
+    opacity: var(--bg-textbox-progress, 0);             /* Default opacity with CSS var fallback */
+    transform-style: preserve-3d;                       /* Enables 3D transform effects on children */
+    will-change: transform;                             /* Optimize rendering for transform animations */
+    perspective: 1000px;                                /* Apply perspective to child transforms for 3D look */
+}
+
+/* Decorative inset border using pseudo-element and gradient layering */
+.text-box::before {
+    content: "";                                        /* Required for pseudo-elements to render */
+    position: absolute;                                 /* Position relative to .text-box */
+    top: 1px;                                           /* Leave 1px inset from top */
+    left: 1px;                                          /* Leave 1px inset from left */
+    right: 1px;                                         /* Leave 1px inset from right */
+    bottom: 1px;                                        /* Leave 1px inset from bottom */
+    border-radius: 15px;                                /* Match box border radius */
+    pointer-events: none;                               /* Allow clicks to pass through */
+    
+    /* Layered gradients: one directional, one radial */
+    background: linear-gradient(60deg, 
+        #ff0000 0%,                                   /* Bright red start */
+        #ff6666 10%,                                  /* Lighter red transition */
+        transparent 40%,                                /* Fade to transparent */
+        transparent 100%                                /* Fully transparent end */
+    ),
+    radial-gradient(circle at 100% 30%,
+        #ff0000 0%,                                   /* Red center */
+        #ff6666 20%,                                  /* Lighter ring */
+        transparent 40%,                                /* Fade to transparent */
+        transparent 100%                                /* Fully transparent edges */
+    );
+
+    /* Masking to create border effect without filling center */
+    mask: 
+        linear-gradient(#fff 0 0) content-box,        /* Inner area */
+        linear-gradient(#fff 0 0);                    /* Full area */
+    mask-composite: exclude;                            /* Subtract inner from outer to leave border only */
+
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box,        /* Same for Safari */
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;            /* Same logic for Safari */
+
+    padding: 1px;                                       /* Space for the border effect to show */
+    box-sizing: border-box;                             /* Include padding in size */
+    z-index: 1;                                         /* Position above background but below content */
+}
+
+/* Glowing box shadow on hover (desktop only) */
+.text-box:hover {
+    box-shadow: 0 0 30px 7px rgba(255, 0, 0, 0.7);    /* Red glow effect */
+    transition: box-shadow 0.5s ease-in-out;            /* Smooth transition in/out */
+}
+
+/* Heading style inside text box */
+.text-box h3 {
+    font-size: 2rem;                                    /* Large title text */
+    font-weight: bold;                                  /* Strong emphasis */
+    color: #ffffff;                                   /* White color */
+    text-shadow: 0 0 10px rgba(255, 31, 31, 0.5);     /* Red outer glow */
+}
+
+/* Paragraph style inside text box */
+.text-box p {
+    font-size: 1.15rem;                                 /* Slightly larger than normal text */
+}
+
+/* Override styles for mobile devices (portrait orientation) */
+@media (orientation: portrait) {
+    .text-box {
+        margin: 1rem 0;                                 /* Reduce vertical spacing on mobile */
+        min-height: 0;                                  /* Let height be determined by content */
+        padding: 1.5rem;                                /* Slightly tighter inner spacing */
+        box-shadow: none !important;                    /* Disable glow effect */
+        transition: none;                               /* Remove animation for simplicity/performance */
+    }
+
+    .text-box:hover {
+        box-shadow: none;                               /* Prevent hover effect on mobile */
+    }
+}

@@ -1,0 +1,76 @@
+/* Animation: Pulsing red glow around the button */
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.4); /* Subtle glow at beginning/end */
+    }
+    50% {
+        box-shadow: 0 0 35px rgba(255, 0, 0, 0.6); /* Brighter glow at pulse peak */
+    }
+}
+
+.main-button {
+    position: relative;             /* Required for absolute-positioned pseudo-elements */
+    padding: 1rem 2.5rem;           /* Comfortable button size */
+    font-size: 1.25rem;             /* Slightly larger text */
+    font-weight: 600;               /* Semi-bold for emphasis */
+    color: #fff;                  /* White text for dark background */
+    background: #1a1a1a;          /* Dark charcoal background */
+    border-radius: 999px;           /* Fully rounded (pill-shaped) */
+    cursor: pointer;                /* Cursor changes to pointer on hover */
+    overflow: hidden;               /* Keeps internal glow inside boundaries */
+    border: none;                   /* Removes default border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;      /* Smooth hover/active effects */
+    box-shadow: inset 0 0 6px rgba(255, 0, 0, 0.15);          /* Subtle inner glow */
+    animation: pulse-glow 3s infinite ease-in-out;              /* Runs glowing animation endlessly */
+}
+
+/* Red border and soft inner glow using ::before */
+.main-button::before {
+    content: '';                            /* Mandatory for pseudo-elements */
+    position: absolute;
+    top: 1.5px; bottom: 1.5px;
+    left: 1.5px; right: 1.5px;              /* Slight inset from edges for border and glow */
+    border-radius: 999px;                   /* Rounded same as button */
+    pointer-events: none;                   /* Doesn’t interfere with clicks */
+    border: 1px solid rgba(255, 80, 80, 0.8);   /* Subtle red outer stroke */
+    box-shadow: inset 0 0 6px rgba(255, 0, 0, 0.4); /* Inner glow */
+    box-sizing: border-box;                 /* Ensures borders don't add to total size */
+    z-index: 1;                             /* Under button content, above background */
+}
+
+/* Gradient red glow from bottom using ::after */
+.main-button::after {
+    content: '';
+    position: absolute;
+    left: 1.5px;
+    right: 1.5px;
+    bottom: 1.5px;
+    height: 18px;
+    border-radius: 0 0 999px 999px;         /* Round bottom corners only */
+    pointer-events: none;
+    z-index: 2;                             /* Between ::before and content */
+    background: linear-gradient(
+        to top,
+        rgba(255, 0, 0, 0.4),             /* Stronger red at base */
+        rgba(255, 0, 0, 0.1),             /* Fades as it rises */
+        transparent                         /* Completely fades out */
+    );
+}
+
+/* Ensures text stays above pseudo-elements */
+.main-button > * {
+    position: relative;
+    z-index: 3;
+}
+
+/* Hover state: scales up slightly and glows stronger */
+.main-button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);  /* More intense glow */
+}
+
+/* Clicked state: shrink and stronger glow */
+.main-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 35px rgba(255, 0, 0, 1);    /* Max glow */
+}

@@ -1,0 +1,62 @@
+.hero-content {
+    position: absolute;         /* Positioned relative to the nearest positioned ancestor (likely the .main-canvas-wrapper), allows layering above canvas */
+    top: 0;                     /* Aligns top of the section with the top of the parent container */
+    left: 0;                    /* Aligns to the left edge */
+    right: 0;                   /* Aligns to the right edge */
+    height: 200px;              /* Base height, but overridden by min-height below (can be removed) */
+    z-index: 10;                /* Ensures content appears above the 3D canvas and gradient */
+    min-height: 100svh;          /* Ensures the section always fills at least the full viewport height */
+    padding-top: 150px;         /* Pushes text downward to avoid overlapping top UI or canvas elements */
+    text-align: center;         /* Centers the text horizontally */
+}
+
+/* Text styling for the main hero title */
+.hero-content h1 {
+    font-size: clamp(2rem, 11vw, 6rem);                 /* Responsive font size between 2rem and 6rem, based on viewport width */
+    font-weight: bold;                                  /* Makes the text bold */
+    margin-bottom: 2rem;                                /* Adds spacing below the heading */
+    color: #ffffff;                                   /* White text color */
+    text-shadow: 0 0 10px rgba(255, 31, 31, 0.5);     /* Red glow effect around the text for visual impact */
+}
+
+@media (orientation: portrait) {
+    .hero-content h1 {
+        margin-top: 15vh;        /* Adds extra space from the top for portrait view (like phones) */
+        margin-bottom: 2rem;     /* Ensures consistent bottom spacing */
+    }
+}
+
+.button-wrapper {
+    transform: scale(var(--btn-scale, 1));        /* Dynamically scales button via CSS variable set in JSX inline styles */
+    transform-origin: center;                     /* Ensures scaling happens from the center */
+    transition: transform 0.3s ease;              /* Smooth scaling animation */
+}
+
+
+.main-canvas-wrapper {
+    position: relative;        /* Allows children with absolute positioning to be positioned within this container */
+    top: 0;                    /* No vertical offset */
+    left: 0;                   /* No horizontal offset */
+    width: 100svw;              /* Takes full width of the viewport */
+    height: 150svh;            /* 150% of the dynamic viewport height — creates a tall immersive feel (parallax-ready) */
+    z-index: 1;                /* Places this below hero content but above background layers */
+}
+
+.gradient-overlay {
+    position: absolute;        /* Allows full control over placement inside its container */
+    width: 100%;               /* Spans full width of parent */
+    left: 0;                   /* Aligns to left edge */
+    right: 0;                  /* Aligns to right edge (not technically needed with width: 100%) */
+    bottom: 0;                 /* Anchors the gradient to the bottom */
+    height: 700px;             /* Height of the gradient fade — tweak this based on visual needs */
+    z-index: 5;                /* Layers above canvas but behind .hero-content */
+    pointer-events: none;      /* Allows clicks to pass through (important if elements are underneath) */
+
+    /* Gradient definition */
+    background: linear-gradient(
+        to bottom,                  /* Direction: from top to bottom */
+        transparent 0%,             /* Starts fully transparent */
+        black 70%,                /* At 70% height, it becomes black */
+        black 100%                /* Remains black to the end — strong fade to black effect */
+    );
+}

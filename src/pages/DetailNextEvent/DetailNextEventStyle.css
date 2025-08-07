@@ -1,0 +1,170 @@
+.details-container {
+    background: #121212;              /* Dark background for the entire container */
+    padding: 1rem 1rem;                 /* Padding inside the container */
+    display: flex;                      /* Use flexbox layout */
+    flex-direction: row;                /* Align children in a row by default */
+    height: auto;                       /* Height adjusts to content */
+    overflow: visible;                  /* Allow overflow */
+    align-items: flex-start;            /* Align items at the start vertically */
+    gap: 1rem;                          /* Space between image and event info */
+}
+
+.image-wrapper {
+    max-height: 90vh;                   /* Limit max height to 90% of viewport height */
+    width: auto;                        /* Width auto to maintain aspect ratio */
+    max-width: 100%;                    /* Prevent overflow horizontally */
+    display: flex;                      /* Flex container for centering image */
+    align-items: flex-start;            /* Align image at top */
+    justify-content: center;            /* Center image horizontally */
+    padding: 1rem;                      /* Padding around image */
+}
+
+.event-poster {
+    max-height: 90vh;                   /* Limit image height */
+    width: 100%;                        /* Image fills container width */
+    height: auto;                       /* Maintain aspect ratio */
+    max-width: 100vw;                   /* Do not exceed viewport width */
+    aspect-ratio: 4 / 5;                /* Fixed aspect ratio (width:height) */
+    border: 2px solid red;            /* Red border for styling */
+    border-radius: 25px;                /* Rounded corners */
+    object-fit: contain;                /* Scale image to fit without cropping */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;      /* Smooth transition on hover */
+    box-shadow: 0 0 35px rgba(255, 0, 0, 0.3);                /* Red glow shadow */
+    background-color: #1a1a1a;        /* Background behind image */
+}
+
+.event-poster:hover {
+    transform: scale(1.03);                                     /* Slight zoom on hover */
+    box-shadow: 0 0 40px rgba(255, 0, 0, 0.5);                /* Stronger glow on hover */
+}
+
+.event-info {
+    min-width: 50vw;                    /* Minimum width for event info section */
+    display: flex;                      /* Flex container for vertical stacking */
+    flex-direction: column;             /* Stack children vertically */
+    color: #eee;                      /* Light text color */
+}
+
+.event-info h1 {
+    font-size: 2.6rem;                  /* Large heading font size */
+    color: white;                     /* White text */
+    margin: 0 0 0.4rem 0;               /* Margin bottom only */
+    text-align: center;                 /* Center heading text */
+}
+
+.event-details {
+    display: flex;                      /* Flex container for details */
+    flex-direction: column;             /* Stack details vertically */
+    gap: 0.2rem;                        /* Small gap between each detail */
+    color: #ccc;                      /* Slightly lighter grey */
+    font-size: 1.05rem;                 /* Slightly larger than normal font */
+    margin-bottom: 0.6rem;              /* Margin below details */
+}
+
+.event-description {
+    font-size: 1.1rem;                  /* Normal paragraph size */
+    line-height: 1.4;                   /* Line spacing for readability */
+    color: #ddd;                      /* Light grey color */
+    margin-bottom: 0.6rem;              /* Margin below description */
+}
+
+/* Style container for buttons */
+.button-section {
+    margin: 0.5rem 0 1rem 0;            /* Vertical margins */
+    width: 100%;                        /* Full width container */
+    display: flex;                      /* Flex to center button */
+    justify-content: center;            /* Center horizontally */
+}
+
+/* Button inside button-section takes less width but is taller */
+.button-section > button {
+    width: 60%;                         /* 60% width of container */
+    min-height: 3.5rem;                 /* Minimum height for easy clicking */
+}
+
+/* VIP and guest info sections share styling */
+.vip-section,
+.guest-section {
+    margin-top: 0.6rem;                 /* Margin on top */
+    padding-top: 0.4rem;                /* Padding top for spacing */
+    border-top: 1px solid #333;       /* Subtle top border separator */
+}
+
+.vip-section h2,
+.guest-section h2 {
+    font-size: 1.4rem;                  /* Subheading font size */
+    color: white;                     /* White text */
+    margin-bottom: 0.3rem;              /* Margin below heading */
+}
+
+.vip-section p {
+    font-size: 1.05rem;                 /* Paragraph font size */
+    line-height: 1.4;                   /* Line spacing */
+    color: #ccc;                      /* Light grey text */
+    margin-bottom: 0.6rem;              /* Bottom margin */
+}
+
+.guest-list {
+    list-style: none;                   /* Remove bullets */
+    padding: 0;                         /* Remove padding */
+    margin: 0;                          /* Remove margin */
+    color: #ccc;                      /* Light grey text */
+    font-size: 1.05rem;                 /* Font size */
+}
+
+.guest-list li {
+    margin-bottom: 0.3rem;              /* Space between list items */
+    position: relative;                 /* For potential future styling */
+}
+
+/* Wrapper for back button styling */
+.back-button-wrapper {
+    align-self: flex-end;               /* Align button to the right */
+    transform: scale(0.85);             /* Slightly smaller button */
+    opacity: 0.8;                       /* Slightly transparent */
+}
+
+/* Responsive styling for portrait screens */
+@media screen and (orientation: portrait) {
+    .details-container {
+        flex-direction: column;         /* Stack elements vertically */
+        align-items: center;            /* Center horizontally */
+    }
+
+    .image-wrapper {
+        max-width: none;                /* Remove max width constraints */
+        max-height: none;               /* Remove max height constraints */
+        width: auto;                    /* Reset width */
+        height: auto;                   /* Reset height */
+        margin-bottom: 1rem;            /* Space below image */
+    }
+
+    .event-poster {
+        width: 100%;                    /* Full width */
+        height: auto;                   /* Maintain aspect ratio */
+        max-height: 90vh;               /* Limit height */
+    }
+
+    .event-info {
+        width: 90vw;                    /* Width to 90% viewport width */
+        align-items: center;            /* Center content horizontally */
+        text-align: center;             /* Center text */
+    }
+
+    .back-button-wrapper {
+        align-self: center;             /* Center back button */
+        transform: scale(0.85);         /* Slightly smaller */
+        opacity: 0.8;                   /* Slight transparency */
+        padding-top: 1rem;              /* Padding above */
+    }
+
+    .event-poster:hover {
+        transform: scale(1);            /* Disable zoom on hover */
+        box-shadow: none;               /* Remove shadow */
+    }
+
+    .button-section > button {
+        width: 100%;                    /* Buttons full width */
+        min-height: 3.5rem;             /* Minimum height */
+    }
+}

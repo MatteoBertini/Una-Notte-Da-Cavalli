@@ -1,0 +1,131 @@
+.navbar {
+    position: fixed;                        /* Fixes the navbar to the top of the screen */
+    top: 0;                                 /* Aligns the navbar to the very top */
+    width: 100%;                            /* Full-width navbar */
+    padding: 1rem 2.5rem;                   /* Adds padding: 1rem top/bottom, 2.5rem left/right */
+    box-sizing: border-box;                 /* Ensures padding is included in width calculations */
+    display: flex;                          /* Flex layout for horizontal arrangement */
+    justify-content: space-between;         /* Spaces logo and links to opposite ends */
+    align-items: center;                    /* Vertically centers items */
+    background: rgba(0, 0, 0, 0.4);       /* Semi-transparent dark background */
+    -webkit-backdrop-filter: saturate(180%) blur(12px);     /* Adds a blur/glass effect behind for Safari compatibility */
+    backdrop-filter: saturate(180%) blur(12px);             /* Adds a blur/glass effect behind */
+    border-bottom: 2px solid rgba(255, 47, 47, calc(var(--border-gradient-opacity, 0))); /* Bottom border with dynamic red opacity */
+    border-bottom-left-radius: 12px;        /* Rounded bottom-left corner */
+    border-bottom-right-radius: 12px;       /* Rounded bottom-right corner */
+    overflow: hidden;                       /* Hides overflow (e.g., from border effect) */
+    z-index: 1000;                          /* Keeps navbar on top of most elements */
+}
+
+/* Gradient using ::before */
+.navbar::before {
+    content: "";                    /* Required to generate a pseudo-element */
+    position: absolute;             /* Absolute inside navbar */
+    left: 0;                        /* Starts from left edge */
+    bottom: 0;                      /* Positioned at bottom of navbar */
+    width: 100%;                    /* Full width of the navbar */
+    height: 24px;                   /* Height of the gradient strip */
+    pointer-events: none;           /* Prevents interaction (clicks) */
+    z-index: 10;                    /* Renders above content but behind nav items */
+
+    /* Vertical gradient fading upward (used for accent strip under navbar) */
+    background: linear-gradient(
+        to top,
+        rgba(255, 47, 47, calc(var(--bg-gradient-opacity, 0.0))) 0%, /* Red with dynamic opacity at the bottom */
+        rgba(255, 47, 47, 0) 100%                 /* Fully transparent at the top */
+    );
+
+    transition: background 0.3s ease;               /* Smooth transition when opacity changes */
+}
+
+.navbar.scrolled {
+    background: rgba(20, 20, 20, 0.85);           /* Darker opaque background */
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);    /* Drop shadow for elevation */
+}
+
+.logo {
+    display: flex;                                  /* Horizontally aligns logo image and text */
+    align-items: center;                            /* Vertically centers content */
+    gap: 0.75rem;                                   /* Space between image and text */
+    font-size: 1.75rem;                             /* Base font size for logo text */
+    font-weight: 700;                               /* Bold text */
+    color: #fff;                                  /* White text */
+    letter-spacing: 0.04em;                         /* Slight letter spacing */
+    user-select: none;                              /* Prevents text selection */
+    cursor: default;                                /* Prevents pointer cursor */
+    text-align: left;                               /* Aligns text to the left */
+    width: auto;                                    /* Natural width */
+    justify-content: flex-start;                    /* Aligns items to the start */
+}
+
+.logo img {
+    width: 36px;                                    /* Fixed width */
+    height: 36px;                                   /* Fixed height */
+    border-radius: 12px;                            /* Rounded corners for circular look */
+    border: 2px solid #ff2f2f;                    /* Red border */
+    object-fit: cover;                              /* Ensures the image fills and crops correctly */
+}
+
+.nav-links {
+    list-style: none;                               /* Removes default bullet points */
+    display: flex;                                  /* Flex layout to align items horizontally */
+    gap: 2rem;                                      /* Space between each nav item */
+    margin: 0;                                      /* Remove default list margin */
+    padding: 0;                                     /* Remove default padding */
+    align-items: center;                            /* Vertical alignment of nav items */
+}
+
+.nav-links li a {
+    text-decoration: none;                          /* Removes underline */
+    color: rgba(255, 255, 255, 0.85);             /* Slightly faded white text */
+    font-weight: 600;                               /* Semi-bold */
+    font-size: 1.2rem;                              /* Medium font size */
+    position: relative;                             /* Needed for underline animation (pseudo-element) */
+    padding: 0.25rem 0;                             /* Vertical padding for clickable area */
+    transition: color 0.3s ease;                    /* Smooth color transition */
+}
+
+.nav-links li a::after {
+    content: '';                                    /* Required for pseudo-element */
+    position: absolute;                             /* Absolute inside link */
+    bottom: -4px;                                   /* Positioned just below the text */
+    left: 0;                                        /* Starts from left */
+    width: 0;                                       /* Initially hidden */
+    height: 2px;                                    /* Thin underline */
+    background: #ff2f2f;                          /* Red underline */
+    border-radius: 2px;                             /* Rounded ends */
+    transition: width 0.3s ease;                    /* Smooth expansion */
+}
+
+.nav-links li a:hover {
+    color: #ff2f2f;                               /* Red text on hover */
+    cursor: pointer;                                /* Pointer cursor for interactivity */
+}
+
+.nav-links li a:hover::after {
+    width: 100%;                                    /* Fully expands underline on hover */
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;                     /* Stack logo and nav links vertically */
+        align-items: center;                        /* Center items */
+        gap: 0.25rem;                               /* Smaller vertical spacing */
+        padding: 1rem 1rem;                         /* Reduced horizontal padding */
+    }
+
+    .nav-links {
+        flex-direction: row;                        /* Keep nav items in a row (can be column if needed) */
+        justify-content: center;                    /* Center them horizontally */
+        width: 100%;                                /* Take full width */
+        gap: 2rem;                                  /* Maintain spacing between items */
+    }
+
+    .logo {
+        align-items: center;                        /* Center logo content vertically */
+        font-size: clamp(1.25rem, 7vw, 2rem);       /* Responsive font scaling */
+        text-align: center;                         /* Center logo text */
+        width: 100%;                                /* Take full width */
+        justify-content: center;                    /* Horizontally center the whole logo block */
+    }
+}

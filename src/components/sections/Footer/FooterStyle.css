@@ -1,0 +1,218 @@
+/* Main footer container with gradient background and rounded top corners */
+.footer {
+    background: linear-gradient(to top right, #000000, #7f1d1d, #000000); /* Black to dark red gradient */
+    color: #f3f4f6;                               /* Light gray text for contrast */
+    padding: 1rem 1.5rem;                           /* Padding around the content */
+    border-radius: 25px 25px 0px 0px;               /* Rounded corners on top left and top right */
+    position: relative;                             /* For positioning the ::before pseudo element */
+    bottom: 0;                                      /* Stick to bottom */
+    right: 0;
+    left: 0;
+    z-index: 1;                                     /* Layer above some other content */
+}
+
+/* Decorative border using a gradient around the footer's top edges */
+.footer::before {
+    content: "";                                    /* Required for pseudo-elements */
+    position: absolute;                             /* Positioned relative to .footer */
+    top: 0; left: 0; right: 0; bottom: 0px;         /* Cover full footer area except 3px at bottom */
+    border-radius: 25px 25px 0 0;                   /* Rounded top corners */
+    padding: 3px 3px 0 3px;                         /* Creates space for border effect at top */
+
+    background: linear-gradient(to right, #f43f5e, #fb7185, #7f1d1d); /* Gradient border */
+
+    /* Masking technique to create a border only on the edges */
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;                        /* Cuts out the content-box */
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+
+    pointer-events: none;                           /* Allow clicks to pass through */
+    z-index: -1;                                    /* Put behind the footer content */
+}
+
+/* Wrapper container inside footer with max width and grid layout */
+.footer-container {
+    max-width: 1360px;                              /* Maximum width before centering */
+    margin: 0 auto;                                 /* Center horizontally */
+    display: grid;                                  /* CSS grid layout */
+    grid-template-columns: 1fr;                     /* One column by default */
+    gap: 2rem;                                      /* Space between grid items */
+    row-gap: 0.5rem;                                /* Vertical spacing override */
+}
+
+/* Responsive grid: 2 columns on small screens and up */
+@media (min-width: 640px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;             /* Two equal columns */
+        row-gap: 1rem;                              /* Increase vertical gap */
+    }
+}
+
+/* Responsive grid: 4 columns with custom fractions on medium screens and up */
+@media (min-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1.5fr 1.25fr 0.75fr 0.5fr;   /* Custom column widths */
+        gap: 2rem;                                          /* Horizontal and vertical gaps */
+    }
+}
+
+/* Each footer section is a vertical flex container */
+.footer-section {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Brand name styling */
+.footer-brand {
+    font-size: 1.5rem;                              /* Large text */
+    font-weight: bold;                              /* Bold font */
+    color: #f43f5e;                               /* Pink-red brand color */
+    margin-bottom: 0.5rem;                          /* Space below */
+    margin-top: 0.5rem;                             /* Space above */
+}
+
+/* Paragraph style for descriptions */
+.footer-description {
+    font-size: 0.875rem;                            /* Smaller font size */
+    color: #d1d5db;                               /* Lighter gray for contrast */
+    margin-bottom: 0.5rem;                          /* Spacing below */
+    margin-top: 0.5rem;                             /* Spacing above */
+}
+
+/* Headings in footer sections */
+.footer-heading {
+    font-size: 1.25rem;                             /* Medium-large size */
+    font-weight: 600;                               /* Semi-bold */
+    color: #fb7185;                               /* Lighter pink */
+    margin-bottom: 0.5rem;                          /* Space below */
+    margin-top: 0.5rem;                             /* Space above */
+}
+
+/* Smaller headings variation */
+.smaller-heading {
+    font-size: 1rem;                                /* Smaller heading size */
+    color: #fb7185;                               /* Same pink as headings */
+}
+
+/* List styling for team members */
+.footer-list {
+    list-style: none;                               /* Remove bullets */
+    padding: 0;                                     /* Remove padding */
+    margin: 0;                                      /* Remove margin */
+}
+
+/* Link styles for regular footer links */
+.footer-link {
+    font-size: 0.875rem;                            /* Smaller font */
+    color: #f3f4f6;                               /* Light gray */
+    text-decoration: none;                          /* Remove underline */
+    display: inline-block;                          /* Shrink-wrap */
+    margin-bottom: 0.5rem;                          /* Space below */
+    transition: color 0.3s;                         /* Smooth color change on hover */
+}
+
+/* Hover state for footer links */
+.footer-link:hover {
+    color: #f43f5e;                               /* Change to brand pink on hover */
+}
+
+/* Icons in footer, generally pink */
+.footer-icon {
+    color: #f43f5e;                               /* Brand pink */
+}
+
+/* Social links styling (inline-flex for icon+text) */
+.footer-social-link {
+    display: inline-flex;                           /* Align icon + text */
+    align-items: center;                            /* Vertically center */
+    gap: 0.5rem;                                    /* Space between icon and text */
+    transition: color 0.3s;                         /* Smooth hover */
+    text-decoration: none;                          /* Remove underline */
+}
+
+/* Main Instagram account styling */
+.instagram-main {
+    font-weight: 600;                               /* Semi-bold */
+    font-size: 1.1rem;                              /* Slightly bigger text */
+    color: #fb7185;                               /* Light pink */
+}
+
+/* Hover effect for main Instagram */
+.instagram-main:hover {
+    color: #f43f5e;                               /* Darker pink */
+}
+
+/* Personal Instagram links styling */
+.instagram-personal {
+    font-weight: 500;                               /* Normal-bold */
+    font-size: 0.9rem;                              /* Smaller font */
+    color: #fb7185;                               /* Light pink */
+}
+
+/* Hover effect for personal Instagram links */
+.instagram-personal:hover {
+    color: #f43f5e;                               /* Darker pink */
+}
+
+/* Bottom copyright section styling */
+.footer-bottom {
+    text-align: center;                             /* Centered text */
+    font-size: 0.875rem;                            /* Small text */
+    color: #9ca3af;                               /* Muted gray */
+    margin-top: 1rem;                               /* Space above */
+    padding-top: 1rem;                              /* Padding top */
+    border-top: 1px solid #7f1d1d;                /* Top border line in dark red */
+}
+
+/* Credit section styling */
+.footer-credit {
+    text-align: center;                             /* Center text */
+    font-size: 0.65rem;                             /* Very small text */
+    color: #9ca3af;                               /* Muted gray */
+    margin-top: 0.25rem;                            /* Small space above */
+    margin-bottom: 1rem;                            /* Space below */
+}
+
+/* Link style in credit */
+.footer-credit-link {
+    color: #d1d5db;                               /* Light gray */
+    text-decoration: none;                          /* No underline */
+    font-weight: 600;                               /* Semi-bold */
+    transition: color 0.3s;                         /* Smooth hover */
+}
+
+/* Hover color for credit link */
+.footer-credit-link:hover {
+  color: #f43f5e;                                 /* Brand pink */
+}
+
+/* Spotify link styling (inline-flex for icon + text) */
+.spotify-link {
+    display: inline-flex;                           /* Align icon + text */
+    align-items: center;                            /* Vertical center */
+    gap: 0.4rem;                                    /* Spacing between icon and text */
+    font-weight: 600;                               /* Semi-bold */
+    color: #fb7185;                               /* Light pink */
+    margin-top: 0.5rem;                             /* Space above */
+    transition: color 0.3s;                         /* Smooth color change */
+}
+
+/* Hover color for Spotify link */
+.spotify-link:hover {
+    color: #f43f5e;                               /* Brand pink */
+}
+
+/* Spotify icon size inside link */
+.spotify-link .footer-icon {
+    font-size: 1.2rem;                              /* Slightly larger icon */
+}
+
+/* Personal Instagram list items spacing */
+.personal-list li {
+    margin-bottom: 0.4rem;                          /* Space between list items */
+}
